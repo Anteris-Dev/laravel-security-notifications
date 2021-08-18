@@ -4,7 +4,7 @@ namespace Anteris\LaravelSecurityNotifications;
 
 use Illuminate\Support\ServiceProvider;
 
-class LaravelSecurityNotificationsProvider extends ServiceProvider
+class LaravelSecurityNotificationsServiceProvider extends ServiceProvider
 {
     public function boot()
     {

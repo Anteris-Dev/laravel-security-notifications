@@ -27,5 +27,12 @@
         "friendsofphp/php-cs-fixer": "^3.0",
         "vimeo/psalm": "^4.9",
         "orchestra/testbench": "^6.20"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Anteris\\LaravelSecurityNotifications\\LaravelSecurityNotificationsServiceProvider"
+            ]
+        }
     }
 }

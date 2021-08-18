@@ -12,4 +12,10 @@
             <directory name="vendor" />
         </ignoreFiles>
     </projectFiles>
+    <forbiddenFunctions>
+        <function name="dd"/>
+        <function name="dump"/>
+        <function name="ray"/>
+        <function name="rd"/>
+    </forbiddenFunctions>
 </psalm>

@@ -18,7 +18,7 @@ The `Anteris\LaravelSecurityNotifications\Concerns\WarnsOfTwoFactorChanges` trai
 To configure the attributes used on the model to determine changes, publish the configuration file with the command:
 
 ```shell
-php artisan vendor:publish Anteris\LaravelSecurityNotifications\LaravelSecurityNotificationsProvider --tag=config
+php artisan vendor:publish --provider="Anteris\LaravelSecurityNotifications\LaravelSecurityNotificationsServiceProvider" --tag=config
 ```
 
 Now open the file `config/laravel-security-notifications.php` and create a record for your model under the `models` array. For example:
@@ -39,7 +39,7 @@ return [
 To modify the emails sent to your users, publish the blade files by running:
 
 ```shell
-php artisan vendor:publish Anteris\LaravelSecurityNotifications\LaravelSecurityNotificationsProvider --tag=views
+php artisan vendor:publish --provider="Anteris\LaravelSecurityNotifications\LaravelSecurityNotificationsServiceProvider" --tag=views
 ```
 
 This will place the blade files in `resources/views/vendor/laravelSecurityNotifications`.
