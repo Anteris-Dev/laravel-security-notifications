@@ -28,7 +28,7 @@ trait WarnsOfPasswordChanges
         $this->registerObserver(PasswordObserver::class);
     }
 
-    public static function updatingPassword(string|callable $callback)
+    public static function updatingPassword(string | callable $callback)
     {
         static::registerModelEvent('updatingPassword', $callback);
     }

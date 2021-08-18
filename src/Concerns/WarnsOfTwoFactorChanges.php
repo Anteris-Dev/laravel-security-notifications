@@ -31,7 +31,7 @@ trait WarnsOfTwoFactorChanges
         $this->registerObserver(TwoFactorObserver::class);
     }
 
-    public static function updatingTwoFactorSecret(string|callable $callback)
+    public static function updatingTwoFactorSecret(string | callable $callback)
     {
         static::registerModelEvent('updatingTwoFactorSecret', $callback);
     }

@@ -28,7 +28,7 @@ trait WarnsOfEmailChanges
         $this->registerObserver(EmailObserver::class);
     }
 
-    public static function updatingEmail(string|callable $callback): void
+    public static function updatingEmail(string | callable $callback): void
     {
         static::registerModelEvent('updatingEmail', $callback);
     }
