@@ -26,7 +26,7 @@ class EmailChangedNotification extends Notification implements ShouldQueue
         return (new MailMessage())
             ->subject('Email Address Changed')
             ->markdown(
-            'laravelSecurityNotifications::email_changed_notification',
+                'laravelSecurityNotifications::email_changed_notification',
                 [
                     'oldEmail' => $this->oldEmail,
                     'newEmail' => $this->newEmail,
