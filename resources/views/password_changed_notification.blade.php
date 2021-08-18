@@ -5,6 +5,6 @@ Your password was recently changed. If you did not make this change yourself, pl
 
 If you intentionally reset your password, please ignore this notification.
 
-Thank you!
+Thank you!<br>
 {{ config('app.name') }}
 @endcomponent
