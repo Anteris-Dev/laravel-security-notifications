@@ -9,23 +9,27 @@ trait WarnsOfPasswordChanges
 {
     protected static function bootWarnsOfPasswordChanges()
     {
-        // Fire events when the password is getting updated.
+        // Create a new event "updatingPassword."
         static::updating(function (Model $model) {
             $passwordAttribute = config(
                 'laravel-security-notifications.models.' . $model::class . '.password',
                 'password'
             );
 
-            if ($model->isDirty($passwordAttribute)) {
-                $model->fireModelEvent('updatingPassword');
+            if (! $model->isDirty($passwordAttribute)) {
+                return null;
             }
+
+            return $model->fireModelEvent('updatingPassword');
         });
+
+        // Register the "updatingPassword" event with our observer.
+        static::registerModelEvent('updatingPassword', PasswordObserver::class . '@updatingPassword');
     }
 
     protected function initializeWarnsOfPasswordChanges()
     {
         $this->addObservableEvents('updatingPassword');
-        $this->registerObserver(PasswordObserver::class);
     }
 
     public static function updatingPassword(string | callable $callback)

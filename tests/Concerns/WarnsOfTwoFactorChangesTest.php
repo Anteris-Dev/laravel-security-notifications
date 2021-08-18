@@ -35,5 +35,7 @@ class WarnsOfTwoFactorChangesTest extends TestCase
             (new AnonymousNotifiable())->route('mail', 'test.user@example.com'),
             TwoFactorSecretChanged::class
         );
+
+        $notification->assertTimesSent(1, TwoFactorSecretChanged::class);
     }
 }

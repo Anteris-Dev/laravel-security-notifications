@@ -9,23 +9,27 @@ trait WarnsOfEmailChanges
 {
     protected static function bootWarnsOfEmailChanges()
     {
-        // Fire events when the email is getting updated.
+        // Create a new event "updatingEmail."
         static::updating(function (Model $model) {
             $emailAttribute = config(
                 'laravel-security-notifications.models.' . $model::class . '.email',
                 'email'
             );
 
-            if ($model->isDirty($emailAttribute)) {
-                $model->fireModelEvent('updatingEmail');
+            if (! $model->isDirty($emailAttribute)) {
+                return null;
             }
+
+            return $model->fireModelEvent('updatingEmail');
         });
+
+        // Register the "updatingEmail" event with our observer.
+        static::registerModelEvent('updatingEmail', EmailObserver::class . '@updatingEmail');
     }
 
     protected function initializeWarnsOfEmailChanges(): void
     {
         $this->addObservableEvents('updatingEmail');
-        $this->registerObserver(EmailObserver::class);
     }
 
     public static function updatingEmail(string | callable $callback): void

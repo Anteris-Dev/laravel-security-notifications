@@ -1,7 +1,10 @@
-Hello!
+@component('mail::message')
+{{ __('Hello!') }}
 
-Your email address was recently changed from {{ $oldEmail }} to {{ $newEmail }}. If you did not make this change, or do not recognize the email address {{ $newEmail }} please report this incident to your administrator immediately.
+{{ __('Your email address was recently changed from :oldEmail to :newEmail.', [ 'oldEmail' => $oldEmail, 'newEmail' => $newEmail ] }} {{ __('If you did not make this change, or do not recognize the email address :newEmail please report this incident to your administrator immediately.', [ 'newEmail' => $newEmail ]) }}
 
-If you did make this change, please ignore this email.
+{{ __('If you did make this change, please ignore this email.') }}
 
-Thank you!
+{{ __('Thank you!') }}
+{{ config('app.name') }}
+@endcomponent

@@ -34,5 +34,7 @@ class WarnsOfEmailChangesTest extends TestCase
             (new AnonymousNotifiable())->route('mail', 'test.user@example.com'),
             EmailChangedNotification::class
         );
+
+        $notification->assertTimesSent(1, EmailChangedNotification::class);
     }
 }

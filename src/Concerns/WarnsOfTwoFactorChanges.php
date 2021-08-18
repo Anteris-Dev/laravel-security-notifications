@@ -9,26 +9,27 @@ trait WarnsOfTwoFactorChanges
 {
     public static function bootWarnsOfTwoFactorChanges()
     {
-        // Fire events when the two factor secret is getting updated.
+        // Create a new event "updatingTwoFactorSecret."
         static::updating(function (Model $model) {
             $twoFactorAttribute = config(
                 'laravel-security-notifications.models.' . $model::class . '.two_factor_secret',
                 'two_factor_secret'
             );
 
-            if ($model->isDirty($twoFactorAttribute)) {
-                $model->fireModelEvent('updatingTwoFactorSecret');
+            if (! $model->isDirty($twoFactorAttribute)) {
+                return null;
             }
+
+            return $model->fireModelEvent('updatingTwoFactorSecret');
         });
 
-        // Observe two factor updates.
-        static::observe(TwoFactorObserver::class);
+        // Register the "updatingTwoFactorSecret" event with our observer.
+        static::registerModelEvent('updatingTwoFactorSecret', TwoFactorObserver::class . '@updatingTwoFactorSecret');
     }
 
     protected function initializeWarnsOfTwoFactorChanges()
     {
         $this->addObservableEvents('updatingTwoFactorSecret');
-        $this->registerObserver(TwoFactorObserver::class);
     }
 
     public static function updatingTwoFactorSecret(string | callable $callback)

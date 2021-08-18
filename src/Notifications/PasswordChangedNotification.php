@@ -18,8 +18,10 @@ class PasswordChangedNotification extends Notification implements ShouldQueue
 
     public function toMail($notifiable): MailMessage
     {
-        return (new MailMessage())->view(
-            'laravelSecurityNotifications::password_changed_notification'
-        );
+        return (new MailMessage())
+            ->subject('Password Changed')
+            ->markdown(
+                'laravelSecurityNotifications::password_changed_notification'
+            );
     }
 }

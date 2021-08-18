@@ -18,8 +18,10 @@ class TwoFactorSecretChanged extends Notification implements ShouldQueue
 
     public function toMail($notifiable): MailMessage
     {
-        return (new MailMessage())->view(
-            'laravelSecurityNotifications::two_factor_changed_notification'
-        );
+        return (new MailMessage())
+            ->subject('Two Factor Changed')
+            ->markdown(
+                'laravelSecurityNotifications::two_factor_changed_notification'
+            );
     }
 }

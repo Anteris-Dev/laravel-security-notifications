@@ -34,5 +34,7 @@ class WarnsOfPasswordChangesTest extends TestCase
             (new AnonymousNotifiable())->route('mail', $model->email),
             PasswordChangedNotification::class
         );
+
+        $notification->assertTimesSent(1, PasswordChangedNotification::class);
     }
 }

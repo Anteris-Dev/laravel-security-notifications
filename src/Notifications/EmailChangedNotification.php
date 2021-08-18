@@ -23,12 +23,14 @@ class EmailChangedNotification extends Notification implements ShouldQueue
 
     public function toMail($notifiable): MailMessage
     {
-        return (new MailMessage())->view(
+        return (new MailMessage())
+            ->subject('Email Address Changed')
+            ->markdown(
             'laravelSecurityNotifications::email_changed_notification',
-            [
-                'oldEmail' => $this->oldEmail,
-                'newEmail' => $this->newEmail,
-            ]
-        );
+                [
+                    'oldEmail' => $this->oldEmail,
+                    'newEmail' => $this->newEmail,
+                ]
+            );
     }
 }
