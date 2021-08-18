@@ -15,7 +15,7 @@ class LaravelSecurityNotificationsServiceProvider extends ServiceProvider
         ], 'views');
 
         $this->publishes([
-            __DIR__.'/../config/laravel-security-notifications.php' => config_path('laravel-security-notifications.php')
+            __DIR__.'/../config/laravel-security-notifications.php' => config_path('laravel-security-notifications.php'),
         ], 'config');
     }
 }
